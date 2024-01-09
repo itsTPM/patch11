@@ -1,0 +1,18 @@
+module.exports = {
+  parseConfig: require('./parseConfig'),
+  checkConfig: require('./checkConfig'),
+  setupWorkEnv: require('./setupWorkEnv'),
+  unpackIso: require('./unpackIso'),
+  mountWim: require('./mountWim'),
+  createDirectories: require('./createDirectories'),
+  getImageIndex: require('./getImageIndex'),
+  removeAppx: require('./removeAppx'),
+  removeFeatures: require('./removeFeatures'),
+  delPathes: require('./delPathes'),
+  patchRegistry: require('./patchRegistry'),
+  copyAutounattend: require('./copyAutounattend'),
+  unmountWim: require('./unmountWim'),
+  generateWim: require('./generateWim'),
+  replaceWim: require('./replaceWim'),
+  makeIso: require('./makeIso'),
+};

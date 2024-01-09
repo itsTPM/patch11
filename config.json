@@ -1,0 +1,79 @@
+{
+  "origIso": "C:\\Windows11.iso",
+  "windowsEdition": "Windows 11 Pro",
+  "unpackDir": "C:\\Buildssss\\",
+  "appxToRemoveList": [
+    "Clipchamp.Clipchamp",
+    "Microsoft.549981C3F5F10",
+    "Microsoft.BingNews",
+    "Microsoft.BingWeather",
+    "Microsoft.GamingApp",
+    "Microsoft.GetHelp",
+    "Microsoft.Getstarted",
+    "Microsoft.HEIFImageExtension",
+    "Microsoft.HEVCVideoExtension",
+    "Microsoft.MicrosoftOfficeHub",
+    "Microsoft.MicrosoftSolitaireCollection",
+    "Microsoft.MicrosoftStickyNotes",
+    "Microsoft.OutlookForWindows",
+    "Microsoft.Paint",
+    "Microsoft.People",
+    "Microsoft.PeopleExperienceHost",
+    "Microsoft.PowerAutomateDesktop",
+    "Microsoft.RawImageExtension",
+    "Microsoft.ScreenSketch",
+    "Microsoft.Todos",
+    "Microsoft.VP9VideoExtensions",
+    "Microsoft.WebMediaExtensions",
+    "Microsoft.WebpImageExtension",
+    "Microsoft.Windows.DevHome",
+    "Microsoft.Windows.Photos",
+    "Microsoft.WindowsAlarms",
+    "Microsoft.WindowsCalculator",
+    "Microsoft.WindowsCamera",
+    "microsoft.windowscommunicationsapps",
+    "Microsoft.WindowsFeedbackHub",
+    "Microsoft.WindowsMaps",
+    "Microsoft.WindowsNotepad",
+    "Microsoft.WindowsSoundRecorder",
+    "Microsoft.WindowsStore",
+    "Microsoft.WindowsTerminal",
+    "Microsoft.Xbox.TCUI",
+    "Microsoft.XboxGameOverlay",
+    "Microsoft.XboxGamingOverlay",
+    "Microsoft.XboxIdentityProvider",
+    "Microsoft.XboxSpeechToTextOverlay",
+    "Microsoft.YourPhone",
+    "Microsoft.ZuneMusic",
+    "Microsoft.ZuneVideo",
+    "MicrosoftCorporationII.QuickAssist",
+    "MicrosoftTeams"
+  ],
+  "featuresToRemove": [],
+  "pathsToDelete": [
+    {
+      "Path": "Windows\\System32\\OneDriveSetup.exe",
+      "IsFolder": false
+    },
+    {
+      "Path": "Program Files (x86)\\Microsoft",
+      "IsFolder": true
+    },
+    {
+      "Path": "Windows\\System32\\Microsoft-Edge-WebView",
+      "IsFolder": true
+    },
+    {
+      "Path": "Windows\\SystemApps\\Microsoft.MicrosoftEdgeDevToolsClient_8wekyb3d8bbwe",
+      "IsFolder": true
+    },
+    {
+      "Path": "Windows\\WinSxS\\amd64_microsoft-edge-webview_31bf3856ad364e35_10.0.22621.2861_none_72ae846e066f72fe",
+      "IsFolder": true
+    },
+    {
+      "Path": "Windows\\System32\\Microsoft-Edge-WebView",
+      "IsFolder": true
+    }
+  ]
+}
