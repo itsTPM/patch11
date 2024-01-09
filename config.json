@@ -1,7 +1,8 @@
 {
   "origIso": "C:\\Windows11.iso",
+  "patchedIso": "C:\\patched11.iso",
   "windowsEdition": "Windows 11 Pro",
-  "unpackDir": "C:\\Buildssss\\",
+  "unpackDir": "C:\\patch11\\",
   "appxToRemoveList": [
     "Clipchamp.Clipchamp",
     "Microsoft.549981C3F5F10",

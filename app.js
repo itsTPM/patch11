@@ -28,7 +28,10 @@ async function main() {
     const config = await parseConfig();
     checkConfig(config);
     const currentWim = 'installwim';
-    const { origIso, unpackDir, unpackedIso, unpackedWim, unpackedTweaks } = setupWorkEnv(currentWim, config);
+    const { origIso, unpackDir, unpackedIso, unpackedWim, unpackedTweaks, patchedIso } = setupWorkEnv(
+      currentWim,
+      config
+    );
     await createDirectories(unpackDir, currentWim);
 
     // Mount iso, copy files to "unpackDir" from config.json & unmount iso
@@ -77,7 +80,7 @@ async function main() {
     await bootwim(config);
 
     // Build iso with patched install.wim and boot.wim
-    await makeIso(unpackedIso);
+    await makeIso(unpackedIso, patchedIso);
   } catch (error) {
     exitWithError(error.message);
   }
