@@ -65,15 +65,7 @@
       "IsFolder": true
     },
     {
-      "Path": "Windows\\SystemApps\\Microsoft.MicrosoftEdgeDevToolsClient_8wekyb3d8bbwe",
-      "IsFolder": true
-    },
-    {
       "Path": "Windows\\WinSxS\\amd64_microsoft-edge-webview_31bf3856ad364e35_10.0.22621.2861_none_72ae846e066f72fe",
-      "IsFolder": true
-    },
-    {
-      "Path": "Windows\\System32\\Microsoft-Edge-WebView",
       "IsFolder": true
     }
   ]
