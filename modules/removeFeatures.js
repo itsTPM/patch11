@@ -1,22 +1,18 @@
 const { runPowerShellScript, printInfo } = require('../utils');
 
 async function removeFeatures(unpackedWim, config) {
-  const listFeaturesPS = `Get-WindowsPackage -Path "${unpackedWim}" | select PackageName`;
-  let list = (await runPowerShellScript(listFeaturesPS)).split(/\s+/);
-  const checker = (value) => config.featuresToRemove.some((element) => value.includes(element));
+  const listAppxPS = `Get-WindowsPackage -Path "${unpackedWim}" | select PackageName`;
+  let list = (await runPowerShellScript(listAppxPS)).split(/\s+/);
 
-  list = list.filter(checker);
+  list = list.filter((value) => config.appxToRemoveList.includes(value));
 
-  let chainedPromise = Promise.resolve();
-  list.forEach((element) => {
-    chainedPromise = chainedPromise.then(async () => {
-      printInfo(`Now: removing feature ${element}`);
-      const removeAppxPS = `Remove-WindowsPackage -Path "${unpackedWim}" -PackageName "${element}" -ErrorAction SilentlyContinue | Out-Null`;
-      await runPowerShellScript(removeAppxPS);
-    });
+  const promises = list.map(async (element) => {
+    printInfo(`Now: removing feature ${element}`);
+    const removeFeaturesScript = `Remove-WindowsPackage -Path "${unpackedWim}" -PackageName "${element}" -ErrorAction SilentlyContinue | Out-Null`;
+    return runPowerShellScript(removeFeaturesScript);
   });
 
-  await chainedPromise;
+  await Promise.all(promises);
 }
 
 module.exports = removeFeatures;

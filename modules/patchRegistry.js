@@ -13,9 +13,12 @@ reg unload HKLM\\${currentWim}_SYSTEM | Out-Null`;
 
   const applyTweaks = `regedit /s "./tweaks/${currentWim}_patches.reg" | Out-Null`;
 
-  await runPowerShellScript(loadRegistryScript);
-  await runPowerShellScript(applyTweaks);
-  await runPowerShellScript(unloadRegistryScript);
+  try {
+    await runPowerShellScript(loadRegistryScript);
+    await runPowerShellScript(applyTweaks);
+  } finally {
+    await runPowerShellScript(unloadRegistryScript);
+  }
 }
 
 module.exports = patchRegistry;
