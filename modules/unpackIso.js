@@ -3,9 +3,9 @@ import { logger } from '../logger.js';
 
 export async function unpackIso(unpackedIso, origIso) {
   const mountDriveScript = `(Mount-DiskImage -ImagePath "${origIso}" | Get-Volume).DriveLetter`;
+  const driveLetter = await runPowerShellScript(mountDriveScript);
   const copyFilesScript = `cp -Recurse "${driveLetter}:*" "${unpackedIso}" | Out-Null`;
   const unmountDriveScript = `Dismount-DiskImage -ImagePath "${origIso}" | Out-Null`;
-  const driveLetter = await runPowerShellScript(mountDriveScript);
 
   if (!driveLetter) {
     throw new Error('Failed to mount ISO. No drive letter returned.');
