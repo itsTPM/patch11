@@ -1,14 +1,26 @@
-import { exitWithError } from '../utils/index.js';
-
-// Check that "windowsEdition" in config.json contains "Windows 11" and edition (examples: "Windows 11 Home", "Windows 11 Enterprise IoT")
 export function checkConfig(config) {
+  if (!config) {
+    throw new Error('Configuration is not defined');
+  }
+
+  checkWindowsEdition(config.windowsEdition);
+}
+
+function checkWindowsEdition(windowsEdition) {
+  if (!windowsEdition) {
+    throw new Error('Windows edition is not defined');
+  }
+
+  const validVersions = ['Windows 11'];
   const validEditions = ['Home', 'Pro', 'Education', 'Enterprise', 'SE', 'IoT'];
-  if (!config || !config.windowsEdition) {
-    exitWithError('Config or windowsEdition is not defined');
-  } else if (
-    !config.windowsEdition.includes('Windows 11') ||
-    !validEditions.some((edition) => config.windowsEdition.includes(edition))
-  ) {
-    exitWithError(`Windows edition "${config.windowsEdition}" is incorrect`);
+  const isValidEdition = validEditions.some((edition) => windowsEdition.includes(edition));
+  const isValidVersion = validVersions.some((version) => windowsEdition.includes(version));
+
+  if (!isValidEdition) {
+    throw new Error(`Windows edition "${windowsEdition}" is not valid`);
+  }
+
+  if (!isValidVersion) {
+    throw new Error(`Windows version "${windowsEdition}" is not supported`);
   }
 }
