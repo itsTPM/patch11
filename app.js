@@ -22,9 +22,9 @@ import { logger } from './logger.js';
 async function main() {
   const currentWimFile = 'install.wim';
   const currentWim = 'installwim';
-  const { origIso, unpackDir, unpackedIso, unpackedWim, patchedIso } = setupWorkEnv(currentWim, config);
   const config = await parseConfig();
-
+  const { origIso, unpackDir, unpackedIso, unpackedWim, patchedIso } = setupWorkEnv(currentWim, config);
+  
   checkConfig(config);
   await createWorkDirectories(unpackDir, currentWim);
   await unpackIso(unpackedIso, origIso);
