@@ -27,10 +27,7 @@ async function main() {
     const config = await parseConfig();
     checkConfig(config);
     const currentWim = 'installwim';
-    const { origIso, unpackDir, unpackedIso, unpackedWim, unpackedTweaks, patchedIso } = setupWorkEnv(
-      currentWim,
-      config,
-    );
+    const { origIso, unpackDir, unpackedIso, unpackedWim, patchedIso } = setupWorkEnv(currentWim, config);
     await createDirectories(unpackDir, currentWim);
     // Mount iso, copy files to "unpackDir" from config.json & unmount iso
     await unpackIso(unpackedIso, origIso);

@@ -1,5 +1,5 @@
 import * as fs from 'node:fs/promises';
-import { runPowerShellScript } from '../utils/index.js';
+import { runPowerShellScript, printError } from '../utils/index.js';
 
 export async function makeIso(unpackedIso, patchedIso) {
   await fs.copyFile('./tweaks/autounattend.xml', `${unpackedIso}/autounattend.xml`).then((err) => {

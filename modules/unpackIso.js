@@ -6,7 +6,7 @@ export async function unpackIso(unpackedIso, origIso) {
     const mountDriveScript = `(Mount-DiskImage -ImagePath "${origIso}" | Get-Volume).DriveLetter`;
     driveLetter = await runPowerShellScript(mountDriveScript);
     printInfo(`Mounted ISO as ${driveLetter}:/`);
-    const copyFilesScript = `cp -Recurse "${driveLetter}:\*" "${unpackedIso}" | Out-Null`;
+    const copyFilesScript = `cp -Recurse "${driveLetter}:*" "${unpackedIso}" | Out-Null`;
     await runPowerShellScript(copyFilesScript);
     printInfo('Copied files from ISO to unpacked ISO');
   } catch (error) {

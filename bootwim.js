@@ -14,7 +14,7 @@ export async function bootwim(config) {
     // Initial setup
     const currentWim = 'bootwim';
     const currentWimFile = 'boot.wim';
-    const { unpackDir, unpackedIso, unpackedWim, unpackedTweaks } = setupWorkEnv(currentWim, config);
+    const { unpackDir, unpackedIso, unpackedWim } = setupWorkEnv(currentWim, config);
     await createDirectories(unpackDir, currentWim);
     const imageIndex = 2;
     // Mount boot.wim
