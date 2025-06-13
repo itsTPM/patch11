@@ -13,13 +13,11 @@ export async function removeAppx(unpackedWim, config) {
     }),
   );
 
-  const promises = removeList.map(async (element) => {
-    logger.info(`Removing APPX ${element}...`);
+  for (const appToRemove of removeList) {
+    logger.info(`Removing APPX ${appToRemove}...`);
 
-    const removeAppxScript = `Remove-AppxProvisionedPackage -Path "${unpackedWim}" -PackageName "${element}" -ErrorAction SilentlyContinue | Out-Null`;
+    const removeAppxScript = `Remove-AppxProvisionedPackage -Path "${unpackedWim}" -PackageName "${appToRemove}" | Out-Null`;
 
-    return await runPowerShellScript(removeAppxScript);
-  });
-
-  await Promise.all(promises);
+    await runPowerShellScript(removeAppxScript);
+  }
 }
