@@ -1,19 +1,19 @@
-import { parseConfig } from './parseConfig';
-import { checkConfig } from './checkConfig';
-import { setupWorkEnv } from './setupWorkEnv';
-import { unpackIso } from './unpackIso';
-import { mountWim } from './mountWim';
-import { createWorkDirectories } from './createWorkDirectories';
-import { getImageIndex } from './getImageIndex';
-import { removeAppx } from './removeAppx';
-import { removeFeatures } from './removeFeatures';
-import { delPathes } from './delPathes';
-import { patchRegistry } from './patchRegistry';
-import { copyAutounattend } from './copyAutounattend';
-import { unmountWim } from './unmountWim';
-import { generateWim } from './generateWim';
-import { replaceWim } from './replaceWim';
-import { makeIso } from './makeIso';
+import { parseConfig } from './parseConfig.js';
+import { checkConfig } from './checkConfig.js';
+import { setupWorkEnv } from './setupWorkEnv.js';
+import { unpackIso } from './unpackIso.js';
+import { mountWim } from './mountWim.js';
+import { createWorkDirectories } from './createWorkDirectories.js';
+import { getImageIndex } from './getImageIndex.js';
+import { removeAppx } from './removeAppx.js';
+import { removeFeatures } from './removeFeatures.js';
+import { delPathes } from './delPathes.js';
+import { patchRegistry } from './patchRegistry.js';
+import { copyAutounattend } from './copyAutounattend.js';
+import { unmountWim } from './unmountWim.js';
+import { generateWim } from './generateWim.js';
+import { replaceWim } from './replaceWim.js';
+import { makeIso } from './makeIso.js';
 
 export {
   parseConfig,

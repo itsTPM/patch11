@@ -1,5 +1,5 @@
 import { runPowerShellScript } from '../utils/index.js';
-import { logger } from './logger.js';
+import { logger } from '../logger.js';
 
 export async function removeFeatures(unpackedWim, config) {
   const getFeatureListScript = `Get-WindowsPackage -Path "${unpackedWim}" | select PackageName`;

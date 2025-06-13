@@ -1,5 +1,5 @@
 import { runPowerShellScript } from '../utils/index.js';
-import { logger } from './logger.js';
+import { logger } from '../logger.js';
 
 export async function patchRegistry(unpackedWim, currentWim) {
   const loadRegistryScript = `reg load HKLM\\${currentWim}_DEFAULT "${unpackedWim}Windows\\System32\\config\\default" | Out-Null

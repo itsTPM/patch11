@@ -1,5 +1,5 @@
 import { runPowerShellScript } from '../utils/index.js';
-import { logger } from './logger.js';
+import { logger } from '../logger.js';
 
 export async function removeAppx(unpackedWim, config) {
   const getAppxListScript = `Get-AppxProvisionedPackage -Path "${unpackedWim}" | select PackageName`;

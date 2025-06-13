@@ -1,5 +1,5 @@
 import * as fs from 'node:fs/promises';
-import { logger } from '../logger';
+import { logger } from '../logger.js';
 
 export async function copyAutounattend(unpackedWim) {
   try {

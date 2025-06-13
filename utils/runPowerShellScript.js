@@ -1,6 +1,6 @@
 import util from 'node:util';
 import { exec as exec$0 } from 'node:child_process';
-import { logger } from '../logger';
+import { logger } from '../logger.js';
 
 const exec = util.promisify({ exec: exec$0 }.exec); // Exec with promise
 

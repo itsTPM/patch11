@@ -1,5 +1,5 @@
 import { runPowerShellScript } from '../utils/index.js';
-import { logger } from './logger.js';
+import { logger } from '../logger.js';
 
 export async function unpackIso(unpackedIso, origIso) {
   const mountDriveScript = `(Mount-DiskImage -ImagePath "${origIso}" | Get-Volume).DriveLetter`;

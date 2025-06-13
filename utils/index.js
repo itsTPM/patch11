@@ -1,3 +1,3 @@
-import { runPowerShellScript } from './runPowerShellScript';
+import { runPowerShellScript } from './runPowerShellScript.js';
 
 export { runPowerShellScript };

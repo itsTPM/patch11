@@ -1,5 +1,5 @@
 import * as fs from 'node:fs/promises';
-import { logger } from './logger.js';
+import { logger } from '../logger.js';
 
 export async function createWorkDirectories(unpackDir, currentWim) {
   const directories = [
