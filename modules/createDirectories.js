@@ -1,7 +1,7 @@
-const { exitWithError, printInfo } = require('../utils');
-const fs = require('fs').promises;
+import * as fs from 'node:fs/promises';
+import { exitWithError, printInfo } from '../utils/index.js';
 
-async function createDirectories(unpackDir, currentWim) {
+export async function createDirectories(unpackDir, currentWim) {
   const directories = [
     unpackDir,
     `${unpackDir}\\iso\\`,
@@ -16,5 +16,3 @@ async function createDirectories(unpackDir, currentWim) {
     exitWithError(error.message);
   }
 }
-
-module.exports = createDirectories;

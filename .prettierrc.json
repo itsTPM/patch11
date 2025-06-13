@@ -3,10 +3,14 @@
   "tabWidth": 2,
   "useTabs": false,
   "semi": true,
+  "endOfLine": "lf",
   "singleQuote": true,
-  "trailingComma": "es5",
+  "bracketSameLine": true,
   "bracketSpacing": true,
   "arrowParens": "always",
-  "htmlWhitespaceSensitivity": "ignore",
-  "bracketSameLine": true
+  "trailingComma": "all",
+  "htmlWhitespaceSensitivity": "css",
+  "vueIndentScriptAndStyle": false,
+  "insertPragma": false,
+  "requirePragma": false
 }

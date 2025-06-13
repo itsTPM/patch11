@@ -1,6 +1,6 @@
-const { runPowerShellScript, printInfo } = require('../utils');
+import { runPowerShellScript, printInfo } from '../utils/index.js';
 
-async function mountWim(unpackedIso, unpackedWim, imageIndex, currentWimFile) {
+export async function mountWim(unpackedIso, unpackedWim, imageIndex, currentWimFile) {
   const mountWimPS = `Set-ItemProperty -Path "${unpackedIso}sources\\${currentWimFile}" -Name IsReadOnly -Value $false | Out-Null
   Mount-WindowsImage -ImagePath "${unpackedIso}sources\\${currentWimFile}" -Path "${unpackedWim}" -Index ${imageIndex} | Out-Null`;
   await runPowerShellScript(mountWimPS).then(async () => {
@@ -8,5 +8,3 @@ async function mountWim(unpackedIso, unpackedWim, imageIndex, currentWimFile) {
     return;
   });
 }
-
-module.exports = mountWim;

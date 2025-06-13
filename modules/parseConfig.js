@@ -1,7 +1,7 @@
-const fs = require('fs').promises;
-const { exitWithError, printInfo, printError } = require('../utils');
+import * as fs from 'node:fs/promises';
+import { exitWithError, printInfo, printError } from '../utils/index.js';
 
-async function parseConfig() {
+export async function parseConfig() {
   const configPath = './config.json';
   try {
     await fs.access(configPath);
@@ -11,9 +11,7 @@ async function parseConfig() {
   } catch (error) {
     printError(error.name, error.message);
     exitWithError(
-      `Failed to parse ${configPath}! Check JSON syntax and file existence. Error: ${error.name}, ${error.message}`
+      `Failed to parse ${configPath}! Check JSON syntax and file existence. Error: ${error.name}, ${error.message}`,
     );
   }
 }
-
-module.exports = parseConfig;

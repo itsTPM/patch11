@@ -1,12 +1,10 @@
-const fs = require('fs').promises;
-const { printError } = require('../utils');
+import * as fs from 'node:fs/promises';
+import { printError } from '../utils/index.js';
 
-async function copyAutounattend(unpackedWim) {
+export async function copyAutounattend(unpackedWim) {
   try {
     await fs.copyFile('./tweaks/autounattend.xml', `${unpackedWim}Windows/System32/Sysprep/autounattend.xml`);
   } catch (err) {
     printError(err.name, err.message);
   }
 }
-
-module.exports = copyAutounattend;

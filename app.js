@@ -1,5 +1,5 @@
-const { exitWithError, printInfo } = require('./utils');
-const {
+import { exitWithError, printInfo } from './utils/index.js';
+import {
   parseConfig,
   checkConfig,
   setupWorkEnv,
@@ -16,9 +16,8 @@ const {
   generateWim,
   replaceWim,
   makeIso,
-} = require('./modules');
-
-const bootwim = require('./bootwim');
+} from './modules/index.js';
+import { bootwim } from './bootwim.js';
 
 async function main() {
   try {
@@ -30,60 +29,46 @@ async function main() {
     const currentWim = 'installwim';
     const { origIso, unpackDir, unpackedIso, unpackedWim, unpackedTweaks, patchedIso } = setupWorkEnv(
       currentWim,
-      config
+      config,
     );
     await createDirectories(unpackDir, currentWim);
-
     // Mount iso, copy files to "unpackDir" from config.json & unmount iso
     await unpackIso(unpackedIso, origIso);
     printInfo(`app.js says: Iso unpacked!`);
-
     // Get windows edition from config.json index in iso
     const imageIndex = await getImageIndex(unpackedIso, config, currentWimFile);
     printInfo(`app.js says: Index is ${imageIndex}`);
-
     // Mount install.wim
     await mountWim(unpackedIso, unpackedWim, imageIndex, currentWimFile);
     printInfo(`app.js says: Install.wim mounted!`);
-
     // Remove appx packages defined in config.json
     await removeAppx(unpackedWim, config);
     printInfo(`app.js says: All APPX packages is removed!`);
-
     // Remove features defined in config.json
     await removeFeatures(unpackedWim, config);
     printInfo(`app.js says: All features is removed!`);
-
     // Delete pathes defined in config.json
     await delPathes(unpackedWim, config);
     printInfo('app.js says: All pathes is deleted!');
-
     // Apply registry patches to install.wim
     await patchRegistry(unpackedWim, currentWim);
     printInfo('app.js says: Tweaks applied!');
-
     // Copy setup config file (autounattend.xml) to install.wim
     await copyAutounattend(unpackedWim);
     printInfo('app.js says: Autounattend copied!');
-
     // Unmount install.wim
     await unmountWim(unpackedWim);
     printInfo('app.js says: Install.wim unmounted!');
-
     // Export install.wim with patches
     await generateWim(unpackedIso, imageIndex, currentWimFile);
-
     // Replace old install.wim with patched install.wim
     await replaceWim(unpackedIso, currentWimFile);
-
     // Patch boot.wim also
     await bootwim(config);
-
     // Build iso with patched install.wim and boot.wim
     await makeIso(unpackedIso, patchedIso);
   } catch (error) {
     exitWithError(error.message);
   }
 }
-
 main();
