@@ -1,4 +1,4 @@
-import { exitWithError, printInfo } from './utils/index.js';
+import { exitWithError } from './utils/index.js';
 import {
   setupWorkEnv,
   mountWim,
@@ -8,6 +8,7 @@ import {
   generateWim,
   replaceWim,
 } from './modules/index.js';
+import { logger } from './logger.js';
 
 export async function bootwim(config) {
   try {
@@ -21,7 +22,7 @@ export async function bootwim(config) {
     await mountWim(unpackedIso, unpackedWim, imageIndex, currentWimFile);
     // Apply registry patches to boot.wim
     await patchRegistry(unpackedWim, currentWim);
-    printInfo('Tweaks applied!');
+    logger.info('Tweaks applied!');
     // Unmount boot.wim
     await unmountWim(unpackedWim);
     // Export boot.wim with patches

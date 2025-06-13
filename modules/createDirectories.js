@@ -1,5 +1,6 @@
 import * as fs from 'node:fs/promises';
-import { exitWithError, printInfo } from '../utils/index.js';
+import { exitWithError } from '../utils/index.js';
+import { logger } from './logger.js';
 
 export async function createDirectories(unpackDir, currentWim) {
   const directories = [
@@ -11,7 +12,7 @@ export async function createDirectories(unpackDir, currentWim) {
   ];
   try {
     await Promise.all(directories.map((dir) => fs.mkdir(dir, { recursive: true })));
-    printInfo('Created directories');
+    logger.info('Created directories');
   } catch (error) {
     exitWithError(error.message);
   }

@@ -1,4 +1,6 @@
+import { logger } from '../logger';
+
 export function exitWithError(msg) {
-  console.error(`[ERROR]: \x1b[31m${msg}\x1b[0m`);
+  logger.error(msg);
   process.exit();
 }

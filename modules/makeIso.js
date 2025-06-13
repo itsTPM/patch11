@@ -1,9 +1,10 @@
 import * as fs from 'node:fs/promises';
-import { runPowerShellScript, printError } from '../utils/index.js';
+import { runPowerShellScript } from '../utils/index.js';
+import { logger } from '../logger.js';
 
 export async function makeIso(unpackedIso, patchedIso) {
   await fs.copyFile('./tweaks/autounattend.xml', `${unpackedIso}/autounattend.xml`).then((err) => {
-    if (err) printError(err.name, err.message);
+    if (err) logger.error(err.name, err.message);
   });
   const makeIsoScript = `./tweaks/oscdimg.exe -m -o -u2 -udfver102 -bootdata:("2#p0,e,b" + "${unpackedIso}" + "boot/etfsboot.com#pEF,e,b" + "${unpackedIso}efi/microsoft/boot/efisys.bin") ${unpackedIso} "${patchedIso}" | Out-Null`;
   await runPowerShellScript(makeIsoScript);
