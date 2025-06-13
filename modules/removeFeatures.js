@@ -3,16 +3,21 @@ import { logger } from '../logger.js';
 
 export async function removeFeatures(unpackedWim, config) {
   const getFeatureListScript = `Get-WindowsPackage -Path "${unpackedWim}" | select PackageName`;
-  const featureList = await runPowerShellScript(getFeatureListScript);
-  const removeList = featureList.split(/\s+/).filter((value) => config.featuresToRemove.includes(value));
+  const featureList = await runPowerShellScript(getFeatureListScript).split(/\s+/);
+  const removeList = featureList.filter((featureListItem) =>
+    config.featureToRemoveList.some((userListItem) => {
+      const handledFeatureListItem = featureListItem.toLowerCase().trim();
+      const handledUserListItem = userListItem.toLowerCase().trim();
 
-  const promises = removeList.map(async (element) => {
-    logger.info(`Removing feature ${element}...`);
+      return handledFeatureListItem.startsWith(handledUserListItem);
+    }),
+  );
 
-    const removeFeaturesScript = `Remove-WindowsPackage -Path "${unpackedWim}" -PackageName "${element}" -ErrorAction SilentlyContinue | Out-Null`;
+  for (const featureToRemove of removeList) {
+    logger.info(`Removing feature ${featureToRemove}...`);
 
-    return await runPowerShellScript(removeFeaturesScript);
-  });
+    const removeFeaturesScript = `Remove-WindowsPackage -Path "${unpackedWim}" -PackageName "${featureToRemove}" -ErrorAction SilentlyContinue | Out-Null`;
 
-  await Promise.all(promises);
+    await runPowerShellScript(removeFeaturesScript);
+  }
 }

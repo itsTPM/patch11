@@ -47,7 +47,7 @@
     "MicrosoftTeams",
     "MSTeams"
   ],
-  "featuresToRemove": [],
+  "featureToRemoveList": [],
   "pathsToDelete": [
     {
       "Path": "Windows\\System32\\OneDriveSetup.exe",
