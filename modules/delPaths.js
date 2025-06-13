@@ -1,7 +1,7 @@
 import { runPowerShellScript } from '../utils/index.js';
 import { logger } from '../logger.js';
 
-export async function delPathes(unpackedWim, config) {
+export async function delPaths(unpackedWim, config) {
   const promises = config.pathsToDelete.map(async (element) => {
     const fullPath = `${unpackedWim}${element.Path}`;
     const delPathScript = `takeown /f "${fullPath}" ${element.IsFolder ? '/r /d Y' : ''}

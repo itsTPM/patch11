@@ -7,7 +7,7 @@ import { createWorkDirectories } from './createWorkDirectories.js';
 import { getImageIndex } from './getImageIndex.js';
 import { removeAppx } from './removeAppx.js';
 import { removeFeatures } from './removeFeatures.js';
-import { delPathes } from './delPathes.js';
+import { delPaths } from './delPaths.js';
 import { patchRegistry } from './patchRegistry.js';
 import { copyAutounattend } from './copyAutounattend.js';
 import { unmountWim } from './unmountWim.js';
@@ -25,7 +25,7 @@ export {
   getImageIndex,
   removeAppx,
   removeFeatures,
-  delPathes,
+  delPaths,
   patchRegistry,
   copyAutounattend,
   unmountWim,

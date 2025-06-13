@@ -8,7 +8,7 @@ import {
   getImageIndex,
   removeAppx,
   removeFeatures,
-  delPathes,
+  delPaths,
   patchRegistry,
   copyAutounattend,
   unmountWim,
@@ -24,7 +24,7 @@ async function main() {
   const currentWim = 'installwim';
   const config = await parseConfig();
   const { origIso, unpackDir, unpackedIso, unpackedWim, patchedIso } = setupWorkEnv(currentWim, config);
-  
+
   checkConfig(config);
   await createWorkDirectories(unpackDir, currentWim);
   await unpackIso(unpackedIso, origIso);
@@ -32,7 +32,7 @@ async function main() {
   await mountWim(unpackedIso, unpackedWim, imageIndex, currentWimFile);
   await removeAppx(unpackedWim, config);
   await removeFeatures(unpackedWim, config);
-  await delPathes(unpackedWim, config);
+  await delPaths(unpackedWim, config);
   await patchRegistry(unpackedWim, currentWim);
   await copyAutounattend(unpackedWim);
   await unmountWim(unpackedWim);
