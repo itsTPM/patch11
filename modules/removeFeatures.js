@@ -1,9 +1,9 @@
 import { runPowerShellScript } from '../utils/index.js';
 import { logger } from '../logger.js';
 
-export async function removeFeatures(unpackedWim, config) {
+export function removeFeatures(unpackedWim, config) {
   const getFeatureListScript = `Get-WindowsPackage -Path "${unpackedWim}" | select PackageName`;
-  const featureList = await runPowerShellScript(getFeatureListScript).split(/\s+/);
+  const featureList = runPowerShellScript(getFeatureListScript).split(/\s+/);
   const removeList = featureList.filter((featureListItem) =>
     config.featureToRemoveList.some((userListItem) => {
       const handledFeatureListItem = featureListItem.toLowerCase().trim();
@@ -18,6 +18,6 @@ export async function removeFeatures(unpackedWim, config) {
 
     const removeFeaturesScript = `Remove-WindowsPackage -Path "${unpackedWim}" -PackageName "${featureToRemove}" -ErrorAction SilentlyContinue | Out-Null`;
 
-    await runPowerShellScript(removeFeaturesScript);
+    runPowerShellScript(removeFeaturesScript);
   }
 }

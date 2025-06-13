@@ -1,9 +1,9 @@
 import { runPowerShellScript } from '../utils/index.js';
 import { logger } from '../logger.js';
 
-export async function removeAppx(unpackedWim, config) {
+export function removeAppx(unpackedWim, config) {
   const getAppxListScript = `Get-AppxProvisionedPackage -Path "${unpackedWim}" | select PackageName`;
-  const appxList = await runPowerShellScript(getAppxListScript).split(/\s+/);
+  const appxList = runPowerShellScript(getAppxListScript).split(/\s+/);
   const removeList = appxList.filter((appxListItem) =>
     config.appxToRemoveList.some((userListItem) => {
       const handledAppxListItem = appxListItem.toLowerCase().trim();
@@ -18,6 +18,6 @@ export async function removeAppx(unpackedWim, config) {
 
     const removeAppxScript = `Remove-AppxProvisionedPackage -Path "${unpackedWim}" -PackageName "${appxToRemove}" | Out-Null`;
 
-    await runPowerShellScript(removeAppxScript);
+    runPowerShellScript(removeAppxScript);
   }
 }

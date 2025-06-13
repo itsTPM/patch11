@@ -1,17 +1,17 @@
-import * as fs from 'node:fs/promises';
+import * as fs from 'node:fs';
 
-export async function parseConfig() {
+export function parseConfig() {
   const configPath = './config.json';
 
   try {
-    await fs.access(configPath);
+    fs.accessSync(configPath);
   } catch (error) {
     throw new Error(
       `Config file not found at ${configPath}. Please ensure it exists and is accessible. Error: ${error.message}`,
     );
   }
 
-  const data = await fs.readFile(configPath, 'utf8');
+  const data = fs.readFileSync(configPath, 'utf8');
 
   try {
     return JSON.parse(data);

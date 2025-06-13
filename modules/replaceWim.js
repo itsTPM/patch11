@@ -1,6 +1,6 @@
-import * as fs from 'fs/promises';
+import * as fs from 'node:fs';
 
-export async function replaceWim(unpackedIso, currentWimFile) {
-  await fs.rm(`${unpackedIso}sources\\${currentWimFile}`);
-  await fs.rename(`${unpackedIso}sources\\patched_${currentWimFile}`, `${unpackedIso}sources\\${currentWimFile}`);
+export function replaceWim(unpackedIso, currentWimFile) {
+  fs.rmSync(`${unpackedIso}sources\\${currentWimFile}`);
+  fs.renameSync(`${unpackedIso}sources\\patched_${currentWimFile}`, `${unpackedIso}sources\\${currentWimFile}`);
 }

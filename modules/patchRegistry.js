@@ -1,7 +1,7 @@
 import { runPowerShellScript } from '../utils/index.js';
 import { logger } from '../logger.js';
 
-export async function patchRegistry(unpackedWim, currentWim) {
+export function patchRegistry(unpackedWim, currentWim) {
   const loadRegistryScript = `reg load HKLM\\${currentWim}_DEFAULT "${unpackedWim}Windows\\System32\\config\\default" | Out-Null
 reg load HKLM\\${currentWim}_NTUSER "${unpackedWim}Users\\Default\\ntuser.dat" | Out-Null
 reg load HKLM\\${currentWim}_SOFTWARE "${unpackedWim}Windows\\System32\\config\\SOFTWARE" | Out-Null
@@ -12,9 +12,9 @@ reg unload HKLM\\${currentWim}_SOFTWARE | Out-Null
 reg unload HKLM\\${currentWim}_SYSTEM | Out-Null`;
   const applyTweaks = `regedit /s "./tweaks/${currentWim}_patches.reg" | Out-Null`;
 
-  await runPowerShellScript(loadRegistryScript);
-  await runPowerShellScript(applyTweaks);
-  await runPowerShellScript(unloadRegistryScript);
+  runPowerShellScript(loadRegistryScript);
+  runPowerShellScript(applyTweaks);
+  runPowerShellScript(unloadRegistryScript);
 
   logger.info(`Applied registry patches`);
 }
