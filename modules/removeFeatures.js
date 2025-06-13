@@ -4,7 +4,7 @@ import { logger } from '../logger.js';
 export async function removeFeatures(unpackedWim, config) {
   const getFeatureListScript = `Get-WindowsPackage -Path "${unpackedWim}" | select PackageName`;
   const featureList = await runPowerShellScript(getFeatureListScript);
-  const removeList = featureList.split(/\s+/).filter((value) => config.featuresToRemoveList.includes(value));
+  const removeList = featureList.split(/\s+/).filter((value) => config.featuresToRemove.includes(value));
 
   const promises = removeList.map(async (element) => {
     logger.info(`Removing feature ${element}...`);
