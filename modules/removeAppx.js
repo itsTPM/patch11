@@ -4,7 +4,14 @@ import { logger } from '../logger.js';
 export async function removeAppx(unpackedWim, config) {
   const getAppxListScript = `Get-AppxProvisionedPackage -Path "${unpackedWim}" | select PackageName`;
   const appxList = await runPowerShellScript(getAppxListScript);
-  const removeList = appxList.split(/\s+/).filter((value) => config.appxToRemoveList.includes(value));
+  const removeList = appxList.split(/\s+/).filter((appxListItem) =>
+    config.appxToRemoveList.some((userListItem) => {
+      const handledAppxListItem = appxListItem.toLowerCase().trim();
+      const handledUserListItem = userListItem.toLowerCase().trim();
+
+      return handledAppxListItem.startsWith(handledUserListItem);
+    }),
+  );
 
   const promises = removeList.map(async (element) => {
     logger.info(`Removing APPX ${element}...`);
