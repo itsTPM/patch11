@@ -3,8 +3,7 @@ import { logger } from './logger.js';
 
 export async function unmountWim(unpackedWim) {
   const unmountWimScript = `Dismount-WindowsImage -Path "${unpackedWim}" -Save | Out-Null`;
-  await runPowerShellScript(unmountWimScript).then(async () => {
-    logger.info(`Unmounted ${unpackedWim} folder`);
-    return;
-  });
+
+  await runPowerShellScript(unmountWimScript);
+  logger.info(`Unmounted ${unpackedWim} folder`);
 }

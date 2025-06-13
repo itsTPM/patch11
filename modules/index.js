@@ -3,7 +3,7 @@ import { checkConfig } from './checkConfig';
 import { setupWorkEnv } from './setupWorkEnv';
 import { unpackIso } from './unpackIso';
 import { mountWim } from './mountWim';
-import { createDirectories } from './createDirectories';
+import { createWorkDirectories } from './createWorkDirectories';
 import { getImageIndex } from './getImageIndex';
 import { removeAppx } from './removeAppx';
 import { removeFeatures } from './removeFeatures';
@@ -21,7 +21,7 @@ export {
   setupWorkEnv,
   unpackIso,
   mountWim,
-  createDirectories,
+  createWorkDirectories,
   getImageIndex,
   removeAppx,
   removeFeatures,

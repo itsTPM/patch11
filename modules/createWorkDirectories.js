@@ -1,8 +1,7 @@
 import * as fs from 'node:fs/promises';
-import { exitWithError } from '../utils/index.js';
 import { logger } from './logger.js';
 
-export async function createDirectories(unpackDir, currentWim) {
+export async function createWorkDirectories(unpackDir, currentWim) {
   const directories = [
     unpackDir,
     `${unpackDir}\\iso\\`,
@@ -10,10 +9,12 @@ export async function createDirectories(unpackDir, currentWim) {
     `${unpackDir}\\bootimg\\`,
     `${unpackDir}\\tweaks\\`,
   ];
+
   try {
     await Promise.all(directories.map((dir) => fs.mkdir(dir, { recursive: true })));
-    logger.info('Created directories');
   } catch (error) {
-    exitWithError(error.message);
+    throw new Error(`Failed to create directories: ${error.message}`);
   }
+
+  logger.info('Created directories');
 }
